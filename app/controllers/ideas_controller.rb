@@ -1,5 +1,10 @@
 class IdeasController < ApplicationController
 
+
+    before_action :authenticate_user!, only: [:create,  :destroy]
+    before_action :find_idea, only: [:show, :edit, :update, :destroy]
+    before_action :authorize_user!, only: [:edit, :destroy]
+
     def index
        @ideas = Idea.all.order(created_at: :desc)
     end
@@ -23,6 +28,7 @@ class IdeasController < ApplicationController
         # render json: question_params
     
         @idea = Idea.new idea_params
+        @idea.user = current_user
         if @idea.save
           redirect_to idea_path(@idea.id)
         else
@@ -58,6 +64,20 @@ class IdeasController < ApplicationController
     private
     def idea_params
     params.require(:idea).permit(:title, :description)
+    end
+
+
+    def find_idea
+        @idea = Idea.find params[:id]
+    end
+
+    def authorize_user!
+        # We add a ! to the name of this method as convention, because it can
+        # mutate the `response` object of our controller.
+        unless can? :crud, @idea
+        flash[:danger] = "Access Denied"
+        redirect_to home_path
+        end
     end
 
 

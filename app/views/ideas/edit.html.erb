@@ -1,0 +1,28 @@
+
+ <div class="post-cards">
+    <div class="card mb-4">
+      <div class="card-body">
+        
+
+<%= form_for(@idea) do |form| %>
+
+  <div>
+    <%= form.label :title %> <br>
+    <%= form.text_area :title, cols: "50", rows: "2"%>
+  </div>
+
+  <div>
+    <%= form.label :description%> <br>
+    <%= form.text_area :description,  cols: "50", rows: "7" %>
+  </div>
+
+  <%= form.submit :Update, class: "btn btn-outline-primary mt-2" %>
+
+
+   
+<% end %>
+
+
+        </div>
+        </div>
+

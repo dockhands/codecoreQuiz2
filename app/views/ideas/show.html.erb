@@ -12,6 +12,7 @@
     Created <%= time_ago_in_words(@idea.created_at) %> ago
   </small> <br>
 
+<% if can?(:edit, @idea) %>
 <div class="btn btn-outline-primary mt-2">   
    <%= link_to(
     "Edit",
@@ -19,8 +20,10 @@
     
   ) %>
 </div>
-<div class="btn btn-outline-primary mt-2">   
+ <% end %>
 
+<% if can?(:delete, @idea) %>
+<div class="btn btn-outline-primary mt-2">   
 <%= link_to(
       "Delete",
       idea_path(@idea.id),
@@ -28,6 +31,7 @@
       data: { confirm: "Are you positive?" }
     ) %>
 </div>
+ <% end %>
 
         </div>
         </div>
