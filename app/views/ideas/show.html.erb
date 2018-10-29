@@ -1,0 +1,41 @@
+
+   <div class="post-cards">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">
+       <%= @idea.title %></h2>
+       
+       <p><%= @idea.description %></p>
+
+
+ <small>
+    Created <%= time_ago_in_words(@idea.created_at) %> ago
+  </small> <br>
+
+<div class="btn btn-outline-primary mt-2">   
+   <%= link_to(
+    "Edit",
+    edit_idea_path(@idea.id)
+    
+  ) %>
+</div>
+<div class="btn btn-outline-primary mt-2">   
+
+<%= link_to(
+      "Delete",
+      idea_path(@idea.id),
+      method: :delete,
+      data: { confirm: "Are you positive?" }
+    ) %>
+</div>
+
+        </div>
+        </div>
+        </div>
+
+
+
+
+
+
+

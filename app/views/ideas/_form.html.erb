@@ -1,0 +1,22 @@
+
+<%= form_for(@idea, url: ideas_path, method: :post) do |form| %>
+
+<% if @idea.errors.present? %>
+    <p>
+      <%= @idea.errors.full_messages.join(", ") %>
+    </p>
+  <% end %>
+
+
+  <div>
+    <%= form.label :title %> <br>
+    <%= form.text_area :title, cols: "50", rows: "2" %>
+  </div>
+
+  <div>
+    <%= form.label :description%> <br>
+    <%= form.text_area :description,  cols: "50", rows: "7" %>
+  </div>
+
+    <%= form.submit class: "btn btn-outline-primary" %>
+<% end %>

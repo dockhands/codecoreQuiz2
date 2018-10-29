@@ -1,0 +1,30 @@
+
+   
+   <div class="container-fluid">
+
+  
+  <div class="d-flex row">
+
+  <% @ideas.each do |idea| %>
+     
+
+    <div class="col-12">
+     <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">
+         <%= link_to(idea.title, idea_path(idea.id)) %> 
+        </h5>
+       
+        <p class="card-text">
+        
+           <%= idea.description %>  
+        </p>
+        
+      <small>
+        Posted <%= time_ago_in_words(idea.created_at) %> ago
+      </small>
+      </div>
+      </div>
+      </div>
+   
+  <% end %>
