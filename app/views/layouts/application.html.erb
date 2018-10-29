@@ -19,9 +19,9 @@
 | 
 <a href='<%= new_idea_path%>'> New Idea</a> 
 
-      <% if user_signed_in? %>
+  <% if user_signed_in? %>
    |
-          Hello <%= current_user.name %>
+          Hello <%= current_user.first_name %>
             |
           <%= link_to 'Sign Out', sessions_path, method: :delete %>
         <% else %>
@@ -30,6 +30,7 @@
           |
           <%= link_to 'Sign In', new_sessions_path %>
         <% end %>
+    
   
 </div>
 </nav>

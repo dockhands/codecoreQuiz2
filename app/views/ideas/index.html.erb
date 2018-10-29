@@ -20,6 +20,13 @@
            <%= idea.description %>  
         </p>
         
+    <small>
+        
+          <strong>
+           By  <%= idea.user&.first_name || "[DELETE]" %> 
+          </strong>
+        </small> <br>
+
       <small>
         Posted <%= time_ago_in_words(idea.created_at) %> ago
       </small>

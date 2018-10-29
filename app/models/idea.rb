@@ -1,6 +1,7 @@
 class Idea < ApplicationRecord
 
-    
+    #has_many :reviews, dependent: :destroy
+
 
    # has_many :likes, dependent: :destroy
     # The title column must be present and unique.
