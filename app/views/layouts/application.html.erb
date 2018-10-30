@@ -6,6 +6,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+
     <%= javascript_include_tag 'application' %>
   </head>
 
@@ -15,28 +18,33 @@
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href='<%= ideas_path%>'>  Idea Factory 💡</a>
 <div class = " mr-2">
-<a href='<%= ideas_path%>'> Home </a> 
-| 
-<a href='<%= new_idea_path%>'> New Idea</a> 
 
-      <% if user_signed_in? %>
-   |
-          Hello <%= current_user.name %>
+  <% if user_signed_in? %>
+ 
+          Hello <%= current_user.first_name %>
             |
           <%= link_to 'Sign Out', sessions_path, method: :delete %>
         <% else %>
-          |
+         
           <%= link_to 'Sign Up', new_user_path %>
           |
           <%= link_to 'Sign In', new_sessions_path %>
-        <% end %>
+            |
+        <% end %> 
+        <br>
+        <br>
+
+
+
+    <%= link_to 'New Idea', new_idea_path, class: 'btn btn-outline-primary my-2 my-sm-0', data: { modal: true } %>
+
+
   
 </div>
 </nav>
 
-<main class="container-fluid mt-4">
-
-
+<!-- Modal -->
+<div id="modal-holder"></div>
 
 
     <%= yield %>

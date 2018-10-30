@@ -12,6 +12,7 @@
     Created <%= time_ago_in_words(@idea.created_at) %> ago
   </small> <br>
 
+<% if can?(:edit, @idea) %>
 <div class="btn btn-outline-primary mt-2">   
    <%= link_to(
     "Edit",
@@ -19,15 +20,84 @@
     
   ) %>
 </div>
-<div class="btn btn-outline-primary mt-2">   
+ <% end %>
 
+<% if can?(:delete, @idea) %>
+<div class="btn btn-outline-primary mt-2">   
 <%= link_to(
       "Delete",
       idea_path(@idea.id),
       method: :delete,
       data: { confirm: "Are you positive?" }
     ) %>
-</div>
+</div> <br>
+ <% end %>
+
+
+<br>
+<hr>
+<h5>Reviews</h5>
+
+<%= form_for([@idea, @review]) do |f| %>
+  <% if @review.errors.present? %>
+    <p>
+      <%= @review.errors.full_messages.join(", ") %>
+    </p>
+  <% end %>
+
+  <div>
+    <%= f.text_area(
+      :body,
+      cols: 60,
+      rows: 5,
+      placeholder: "What do think of this idea?"
+    ) %>
+  </div>
+
+  <%= f.submit "Review" %>
+<% end %>
+
+<ul class="answer-list">
+  <% @reviews.each do |review| %>
+    
+      <p>
+        <small>
+          <strong>
+            
+          </strong>
+        </small> <br>
+
+        <%= review.body %> <br>
+
+        <% if can? :delete, review %>
+          <small>
+            <%= link_to(
+              "Delete",
+              idea_review_path(@idea, review),
+              method: :delete,
+              data: {
+                confirm: "Are you positive?"
+              }
+            ) %> <br>
+          </small>
+          
+        <% end %>
+        
+        <small>
+          Reviewed <%= time_ago_in_words(review.created_at) %> ago
+        </small>
+        <small>
+        
+           by    <strong><%= review.user&.first_name || "[DELETE]" %>  </strong>
+         
+        </small> <br>
+
+     
+      </p>
+    
+  <% end %>
+</ul>
+
 
         </div>
         </div>

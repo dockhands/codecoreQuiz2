@@ -1,4 +1,16 @@
-<h3> New Idea</h3>
 
+  <div class="row justify-content-md-center">
+   <div class="col col-8">
 
-<%= render "form" %>
+<div class="modal-header">
+     <h5 class="modal-title m-0">New idea</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<br>
+
+<%= render 'form',  idea: @idea %>
+
+</div>
+</div>
