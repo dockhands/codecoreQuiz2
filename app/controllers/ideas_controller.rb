@@ -1,4 +1,5 @@
 class IdeasController < ApplicationController
+    respond_to :html, :json
 
 
     before_action :authenticate_user!, only: [:create,  :destroy]
@@ -22,6 +23,7 @@ class IdeasController < ApplicationController
 
     def new
         @idea = Idea.new 
+        respond_modal_with @idea
         # if you leave empty, by default, it will: render :new
     end
 
@@ -34,12 +36,14 @@ class IdeasController < ApplicationController
         # render json: question_params
     
         @idea = Idea.new idea_params
+        respond_modal_with @idea, location: ideas_path
+
         @idea.user = current_user
-        if @idea.save
-          redirect_to idea_path(@idea.id)
-        else
-          render :new
-        end
+        @idea.save
+        
+    
+
+
     end
 
 
@@ -85,6 +89,10 @@ class IdeasController < ApplicationController
         redirect_to home_path
         end
     end
+
+    def set_idea
+        @idea= Idea.find(params[:id])
+      end
 
 
 end

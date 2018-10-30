@@ -1,5 +1,9 @@
 
-<%= form_for(@idea, url: ideas_path, method: :post) do |form| %>
+
+<%= form_for(@idea, remote: request.xhr?, html: { data: { modal: true } }) do |form|  %>
+
+
+
 
 <% if @idea.errors.present? %>
     <p>
@@ -10,13 +14,16 @@
 
   <div>
     <%= form.label :title %> <br>
-    <%= form.text_area :title, cols: "50", rows: "2" %>
+    <%= form.text_area :title, cols: "35", rows: "2" %>
   </div>
 
   <div>
     <%= form.label :description%> <br>
-    <%= form.text_area :description,  cols: "50", rows: "7" %>
+    <%= form.text_area :description,  cols: "35", rows: "7" %>
   </div>
 
-    <%= form.submit class: "btn btn-outline-primary" %>
+
+   <div class="modal-footer">
+    <%= form.button :Submit, class: 'btn-primary float-right' %>
+  </div>
 <% end %>

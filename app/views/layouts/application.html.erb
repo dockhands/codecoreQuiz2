@@ -32,19 +32,19 @@
             |
         <% end %> 
         <br>
+        <br>
 
 
-<a href='<%= new_idea_path%>' class= "btn btn-outline-primary mt-2 float-right" > New Idea </a> 
+
+    <%= link_to 'New Idea', new_idea_path, class: 'btn btn-outline-primary my-2 my-sm-0', data: { modal: true } %>
 
 
-    
   
 </div>
 </nav>
 
-<main class="container-fluid mt-4">
-
-
+<!-- Modal -->
+<div id="modal-holder"></div>
 
 
     <%= yield %>
