@@ -17,3 +17,45 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+
+
+
+
+function toggleIdeas(event) {
+
+    let next = event.target.nextElementSibling.nextElementSibling;
+
+    if (event.target.className == 'far fa-plus-square float-left mr-2 clickable-icon') {
+
+        if (next.style.display == "none") {
+            next.style.display = "block";
+            console.log(event.target);
+          event.target.className ='far fa-minus-square float-left mr-2 clickable-icon';
+           
+        
+        } else {
+            next.style.display = "none";
+            event.target.className ='far fa-plus-square float-left mr-2 clickable-icon';
+        }
+    }
+
+   else  if (event.target.className == 'far fa-minus-square float-left mr-2 clickable-icon') {
+      
+        if (next.style.display == "none") {
+            next.style.display = "block";
+            console.log(event.target);
+          event.target.className ='far fa-plus-square float-left mr-2 clickable-icon';
+           
+        
+        } else {
+            next.style.display = "none";
+            event.target.className ='far fa-plus-square float-left mr-2 clickable-icon';
+        }
+
+
+    }
+}
+
+document.addEventListener('click', toggleIdeas, true);
+

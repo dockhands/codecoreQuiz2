@@ -12,6 +12,12 @@ class IdeasController < ApplicationController
     def show
        @idea = Idea.find params[:id]
 
+       @reviews = @idea.reviews.order(created_at: :desc)
+       @review = Review.new
+    #    @review = Review.new
+
+    #    @reviews = @idea.reviews.all
+
     end
 
     def new
